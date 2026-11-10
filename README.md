@@ -18,6 +18,7 @@ App.svelte
 ```
 
 - 1.8.1: pass
+- CI: see Actions tab (matrix 1.8.1 / 1.9.0 / 1.10.1)
 - 1.9.0, 1.10.1: fail
 - cause: `loadNewestModule("typescript")` in `src/parser/typescript/javascript.ts` picks TS 7 (newest reachable via eslint's hoisted deps) over app's TS 6
 - note: pnpm hoists TS from first package alphabetically. rename `microservice-ts7` -> `z-microservice-ts7` and it passes. fragile.

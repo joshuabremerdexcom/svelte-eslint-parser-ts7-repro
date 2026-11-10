@@ -1,0 +1,29 @@
+name: lint
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: svelte-eslint-parser@${{ matrix.parser }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        parser: ["1.8.1", "1.9.0", "1.10.1"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --frozen-lockfile
+      - name: Use svelte-eslint-parser@${{ matrix.parser }}
+        working-directory: packages/sveltekit-app-ts6
+        run: pnpm add -D svelte-eslint-parser@${{ matrix.parser }}
+      - name: Show hoisted TypeScript
+        run: node -p "require('./node_modules/.pnpm/node_modules/typescript/package.json').version"
+      - name: Lint
+        working-directory: packages/sveltekit-app-ts6
+        run: pnpm lint
