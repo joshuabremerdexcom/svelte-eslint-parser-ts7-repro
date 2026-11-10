@@ -2,9 +2,12 @@
   "name": "sveltekit-app-ts6",
   "private": true,
   "type": "module",
-  "scripts": { "lint": "eslint ." },
+  "scripts": {
+    "lint": "eslint ."
+  },
   "devDependencies": {
     "eslint": "10.14.0",
+    "eslint-plugin-svelte": "3.24.1",
     "svelte": "5.57.3",
     "svelte-eslint-parser": "1.10.1",
     "typescript": "6.0.3",

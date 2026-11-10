@@ -1,11 +1,11 @@
 import tseslint from "typescript-eslint";
-import svelteParser from "svelte-eslint-parser";
+import svelte from "eslint-plugin-svelte";
 
 export default [
+  ...svelte.configs.recommended,
   {
     files: ["**/*.svelte"],
     languageOptions: {
-      parser: svelteParser,
       parserOptions: {
         parser: tseslint.parser,
         projectService: true,

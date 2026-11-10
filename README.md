@@ -1,6 +1,6 @@
 # svelte-eslint-parser picks wrong TypeScript in monorepo
 
-- `packages/sveltekit-app-ts6`: `typescript@6.0.3`, svelte-eslint-parser + typescript-eslint `projectService`
+- `packages/sveltekit-app-ts6`: `typescript@6.0.3`, eslint-plugin-svelte + svelte-eslint-parser + typescript-eslint `projectService`
 - `packages/microservice-ts7`: `typescript@7.0.2`
 - `.svelte` file with plain JS `<script>`
 
