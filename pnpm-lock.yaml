@@ -8,12 +8,6 @@ importers:
 
   .: {}
 
-  packages/microservice-ts7:
-    devDependencies:
-      typescript:
-        specifier: 7.0.2
-        version: 7.0.2
-
   packages/sveltekit-app-ts6:
     devDependencies:
       eslint:
@@ -34,6 +28,12 @@ importers:
       typescript-eslint:
         specifier: 8.72.2
         version: 8.72.2(eslint@10.14.0)(typescript@6.0.3)
+
+  packages/z-microservice-ts7:
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
 
 packages:
 

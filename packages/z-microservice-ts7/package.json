@@ -1,5 +1,5 @@
 {
-  "name": "microservice-ts7",
+  "name": "z-microservice-ts7",
   "private": true,
   "devDependencies": { "typescript": "7.0.2" }
 }
