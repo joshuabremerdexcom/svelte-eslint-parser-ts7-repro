@@ -1,0 +1,13 @@
+{
+  "name": "app",
+  "private": true,
+  "type": "module",
+  "scripts": { "lint": "eslint ." },
+  "devDependencies": {
+    "eslint": "10.14.0",
+    "svelte": "5.57.3",
+    "svelte-eslint-parser": "1.10.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2"
+  }
+}
