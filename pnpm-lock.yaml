@@ -6,13 +6,15 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  packages/microservice-ts7:
     devDependencies:
       typescript:
         specifier: 7.0.2
         version: 7.0.2
 
-  packages/app:
+  packages/sveltekit-app-ts6:
     devDependencies:
       eslint:
         specifier: 10.14.0

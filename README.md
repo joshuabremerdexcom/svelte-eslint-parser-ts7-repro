@@ -1,12 +1,12 @@
 # svelte-eslint-parser picks wrong TypeScript in monorepo
 
-- root: `typescript@7.0.2`
-- `packages/app`: `typescript@6.0.3`, svelte-eslint-parser + typescript-eslint `projectService`
+- `packages/sveltekit-app-ts6`: `typescript@6.0.3`, svelte-eslint-parser + typescript-eslint `projectService`
+- `packages/microservice-ts7`: `typescript@7.0.2`
 - `.svelte` file with plain JS `<script>`
 
 ```sh
 pnpm install
-cd packages/app
+cd packages/sveltekit-app-ts6
 pnpm lint
 ```
 
@@ -19,4 +19,5 @@ App.svelte
 
 - 1.8.1: pass
 - 1.9.0, 1.10.1: fail
-- cause: `loadNewestModule("typescript")` in `src/parser/typescript/javascript.ts` picks TS 7 (newest reachable) over app's TS 6
+- cause: `loadNewestModule("typescript")` in `src/parser/typescript/javascript.ts` picks TS 7 (newest reachable via eslint's hoisted deps) over app's TS 6
+- note: pnpm hoists TS from first package alphabetically. rename `microservice-ts7` -> `z-microservice-ts7` and it passes. fragile.
