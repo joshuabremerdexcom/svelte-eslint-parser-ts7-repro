@@ -4,14 +4,14 @@ on:
   push:
   workflow_dispatch:
 
+env:
+  PARSER_REPO: joshuabremer/svelte-eslint-parser
+  PARSER_BRANCH: jb/load-typescript-from-typescript-eslint
+
 jobs:
   lint:
-    name: svelte-eslint-parser@${{ matrix.parser }}
+    name: svelte-eslint-parser from joshuabremer/svelte-eslint-parser#jb/load-typescript-from-typescript-eslint
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        parser: ["1.8.1", "1.9.0", "1.10.1"]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -19,9 +19,19 @@ jobs:
         with:
           node-version: 22
       - run: pnpm install --frozen-lockfile
-      - name: Use svelte-eslint-parser@${{ matrix.parser }}
+      - name: Build svelte-eslint-parser from ${{ env.PARSER_REPO }}#${{ env.PARSER_BRANCH }}
+        working-directory: ${{ runner.temp }}
+        run: |
+          git clone --depth 1 --branch "$PARSER_BRANCH" "https://github.com/$PARSER_REPO.git" parser
+          cd parser
+          git log --oneline -1
+          pnpm install --frozen-lockfile
+          pnpm run build
+          pnpm pack --pack-destination ..
+          mv ../svelte-eslint-parser-*.tgz ../svelte-eslint-parser-fork.tgz
+      - name: Use svelte-eslint-parser from ${{ env.PARSER_REPO }}#${{ env.PARSER_BRANCH }}
         working-directory: packages/sveltekit-app-ts6
-        run: pnpm add -D svelte-eslint-parser@${{ matrix.parser }}
+        run: pnpm add -D "file:${{ runner.temp }}/svelte-eslint-parser-fork.tgz"
       - name: Show hoisted TypeScript
         run: node -p "require('./node_modules/.pnpm/node_modules/typescript/package.json').version"
       - name: Lint
