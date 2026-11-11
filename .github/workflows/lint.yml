@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        parser: ["1.8.1", "1.9.0", "1.10.1"]
+        parser: ["1.8.1", "1.9.0", "1.10.1", "file:../../vendor/svelte-eslint-parser-fix.tgz"]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
